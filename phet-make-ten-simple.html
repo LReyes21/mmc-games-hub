@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Ten - PhET Simulation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .game-section {
+            padding: 30px;
+        }
+        
+        .iframe-container {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .loading {
+            color: #e74c3c;
+            font-size: 1.2em;
+            padding: 20px;
+        }
+        
+        .game-iframe {
+            width: 100%;
+            height: 600px;
+            border: 3px solid #e74c3c;
+            border-radius: 10px;
+            background: white;
+            display: block;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .info-card h3 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .info-card ul {
+            list-style: none;
+        }
+        
+        .info-card li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .info-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn.secondary {
+            background: #6c757d;
+        }
+        
+        .btn.secondary:hover {
+            background: #5a6268;
+        }
+        
+        @media (max-width: 768px) {
+            .game-iframe {
+                height: 400px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html#games" class="back-btn">← Back to Games Hub</a>
+            <h1>🎯 Make a Ten</h1>
+            <p>Build number bonds and addition strategies</p>
+        </div>
+        
+        <div class="game-section">
+            <div class="iframe-container">
+                <div class="loading" id="loading">
+                    🎮 Loading PhET Make a Ten simulation...
+                </div>
+                <iframe 
+                    id="gameFrame"
+                    class="game-iframe" 
+                    src="https://phet.colorado.edu/sims/html/make-a-ten/latest/make-a-ten_en.html"
+                    title="PhET Make a Ten Simulation"
+                    allowfullscreen
+                    onload="hideLoading()"
+                    onerror="showError()">
+                </iframe>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎯 Learning Objectives</h3>
+                    <ul>
+                        <li>Master the "make ten" addition strategy</li>
+                        <li>Build number bonds to 10</li>
+                        <li>Develop mental math fluency</li>
+                        <li>Practice decomposing numbers efficiently</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>🎮 How to Play</h3>
+                    <ul>
+                        <li>Use the Adding Screen for practice</li>
+                        <li>Try the Game Screen for challenges</li>
+                        <li>Use ten frames for visual support</li>
+                        <li>Drag dots and numbers to make groups of ten</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>🌟 Tips for Success</h3>
+                    <ul>
+                        <li>Start with numbers close to 10 (like 8+2, 9+1)</li>
+                        <li>Use the visual ten frame to understand</li>
+                        <li>Practice breaking apart larger numbers</li>
+                        <li>Try different difficulty levels</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>📊 Grade Level</h3>
+                    <ul>
+                        <li>Perfect for Grades K-2</li>
+                        <li>Supports number bond strategies</li>
+                        <li>Research-based learning</li>
+                        <li>University of Colorado Boulder</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <a href="index.html#games" class="btn">🏠 More Games</a>
+                <a href="https://phet.colorado.edu/sims/html/make-a-ten/latest/make-a-ten_en.html" target="_blank" class="btn secondary">🌐 Play on PhET Website</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function hideLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.style.display = 'none';
+            }
+            console.log('Game loaded successfully');
+        }
+        
+        function showError() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.innerHTML = '❌ Game failed to load. <a href="https://phet.colorado.edu/sims/html/make-a-ten/latest/make-a-ten_en.html" target="_blank" style="color: #e74c3c; text-decoration: underline;">Click here to play on PhET website</a>';
+            }
+        }
+        
+        // Fallback timeout
+        setTimeout(function() {
+            const loading = document.getElementById('loading');
+            if (loading && loading.style.display !== 'none') {
+                hideLoading();
+            }
+        }, 8000);
+    </script>
+</body>
+</html>

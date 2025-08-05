@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build a Fraction - PhET Simulation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .game-section {
+            padding: 30px;
+        }
+        
+        .iframe-container {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .loading {
+            color: #9b59b6;
+            font-size: 1.2em;
+            padding: 20px;
+        }
+        
+        .game-iframe {
+            width: 100%;
+            height: 600px;
+            border: 3px solid #9b59b6;
+            border-radius: 10px;
+            background: white;
+            display: block;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #9b59b6;
+        }
+        
+        .info-card h3 {
+            color: #9b59b6;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .info-card ul {
+            list-style: none;
+        }
+        
+        .info-card li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .info-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #9b59b6;
+            font-weight: bold;
+        }
+        
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #9b59b6;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background: #8e44ad;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
+        }
+        
+        .btn.secondary {
+            background: #6c757d;
+        }
+        
+        .btn.secondary:hover {
+            background: #5a6268;
+        }
+        
+        @media (max-width: 768px) {
+            .game-iframe {
+                height: 400px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html#games" class="back-btn">← Back to Games Hub</a>
+            <h1>🧱 Build a Fraction</h1>
+            <p>Build fractions from shapes and numbers</p>
+        </div>
+        
+        <div class="game-section">
+            <div class="iframe-container">
+                <div class="loading" id="loading">
+                    🎮 Loading PhET Build a Fraction simulation...
+                </div>
+                <iframe 
+                    id="gameFrame"
+                    class="game-iframe" 
+                    src="https://phet.colorado.edu/sims/html/build-a-fraction/latest/build-a-fraction_en.html"
+                    title="PhET Build a Fraction Simulation"
+                    allowfullscreen
+                    onload="hideLoading()"
+                    onerror="showError()">
+                </iframe>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎯 Learning Objectives</h3>
+                    <ul>
+                        <li>Build fractions using shapes and visual models</li>
+                        <li>Understand numerator and denominator relationships</li>
+                        <li>Compare fractions and find equivalent fractions</li>
+                        <li>Practice fraction addition and subtraction</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>🎮 How to Play</h3>
+                    <ul>
+                        <li>Use shapes and number pieces to build fractions</li>
+                        <li>Match pictures to numbers</li>
+                        <li>Explore equivalent fractions</li>
+                        <li>Try different challenge levels</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>🌟 Tips for Success</h3>
+                    <ul>
+                        <li>Start with simple fractions like 1/2 and 1/4</li>
+                        <li>Use visual models to understand concepts</li>
+                        <li>Practice with different shapes</li>
+                        <li>Try building equivalent fractions</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>📊 Grade Level</h3>
+                    <ul>
+                        <li>Perfect for Grades 3-5</li>
+                        <li>Supports Common Core standards</li>
+                        <li>Research-based learning</li>
+                        <li>University of Colorado Boulder</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <a href="index.html#games" class="btn">🏠 More Games</a>
+                <a href="https://phet.colorado.edu/sims/html/build-a-fraction/latest/build-a-fraction_en.html" target="_blank" class="btn secondary">🌐 Play on PhET Website</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function hideLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.style.display = 'none';
+            }
+            console.log('Game loaded successfully');
+        }
+        
+        function showError() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.innerHTML = '❌ Game failed to load. <a href="https://phet.colorado.edu/sims/html/build-a-fraction/latest/build-a-fraction_en.html" target="_blank" style="color: #9b59b6; text-decoration: underline;">Click here to play on PhET website</a>';
+            }
+        }
+        
+        // Fallback timeout
+        setTimeout(function() {
+            const loading = document.getElementById('loading');
+            if (loading && loading.style.display !== 'none') {
+                hideLoading();
+            }
+        }, 8000);
+    </script>
+</body>
+</html>
