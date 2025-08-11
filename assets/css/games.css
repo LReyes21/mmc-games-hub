@@ -169,6 +169,8 @@
 /* Hidden class for filtering */
 .hidden {
     display: none !important;
+    grid-column: 0;
+    grid-row: 0;
 }
 
 /* Responsive adjustments */

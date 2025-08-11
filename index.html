@@ -234,7 +234,70 @@ Curated collection of educational simulations and activities</p>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/games.js"></script>
+
+<!-- Inline filtering script for better compatibility -->
+<script>
+(function() {
+    console.log('Inline filtering script starting...');
+    
+    function initializeFiltering() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const gameCards = document.querySelectorAll('.game-card');
+        
+        console.log('Found', filterButtons.length, 'filter buttons');
+        console.log('Found', gameCards.length, 'game cards');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Filter button clicked:', this.dataset.grade);
+                
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const selectedGrade = this.dataset.grade;
+                console.log('Selected grade:', selectedGrade);
+                
+                // Show/hide games based on filter
+                gameCards.forEach(card => {
+                    const cardGrade = card.dataset.grade;
+                    console.log('Card grade:', cardGrade, 'Selected:', selectedGrade);
+                    
+                    if (selectedGrade === 'all') {
+                        card.style.display = '';
+                        card.classList.remove('hidden');
+                        console.log('Showing card (all)');
+                    } else if (cardGrade === selectedGrade || cardGrade === 'all') {
+                        card.style.display = '';
+                        card.classList.remove('hidden');
+                        console.log('Showing card (match)');
+                    } else {
+                        card.style.display = 'none';
+                        card.classList.add('hidden');
+                        console.log('Hiding card');
+                    }
+                });
+                
+                console.log('Filtering complete');
+            });
+        });
+        
+        console.log('Event listeners attached');
+    }
+    
+    // Try multiple ways to ensure the script runs
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeFiltering);
+    } else {
+        initializeFiltering();
+    }
+    
+    // Fallback: run after a delay
+    setTimeout(initializeFiltering, 1000);
+})();
+</script>
 
 </body>
 </html>
